@@ -41,7 +41,9 @@ private:
 
     QString number;
 
+    bool numberRuleCheck(QString n);
     bool validate();
     void winning();
+    void closeEvent(QCloseEvent *event);
 };
 #endif // BULLS_AND_COWS_GAME_H

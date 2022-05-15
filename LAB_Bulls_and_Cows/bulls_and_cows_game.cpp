@@ -1,40 +1,32 @@
 #include "bulls_and_cows_game.h"
-#include "ui_bulls_and_cows_game.h"
 #include <QMessageBox>
-#include <QHeaderView>
 #include <QRandomGenerator>
 #include <QInputDialog>
+#include <QCloseEvent>
 
 Bulls_and_Cows_Game::Bulls_and_Cows_Game(QWidget *parent)
     : QWidget(parent)
 {
     records = new RecordList();
     records->setWindowTitle("Рекорды");
-    records->resize(300, 350);
+    records->resize(300, 348);
+    //records->setFixedSize(300,348);
     records->move(700, 150);
 
     val = new QRegularExpressionValidator(QRegularExpression("^[0-9]{4}$"));
     gameTable = new QTableWidget(0, 2, this);
-    gameTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    gameTable->setSelectionMode(QAbstractItemView::NoSelection);
-    gameTable->setFocusPolicy(Qt::FocusPolicy::NoFocus);
-
-    QHeaderView* header = gameTable->horizontalHeader();
-    header->setSectionResizeMode(QHeaderView::Stretch);
+    records->tableSettings(gameTable);
 
     QStringList lst;
     lst << "Число" << "Результат";
     gameTable->setHorizontalHeaderLabels(lst);
-    lst.clear();
-    lst << "1";
-    gameTable->setVerticalHeaderLabels(lst);
 
     status = new QLabel("Игра не начата", this);
     status->setAlignment(Qt::AlignCenter);
     input = new QLineEdit(this);
     nwgButton = new QPushButton("&Новая игра", this);
     recButton = new QPushButton("&Рекорды", this);
-    chkButton = new QPushButton("&Проверить!", this);
+    chkButton = new QPushButton("&Проверить", this);
     inLabel = new QLabel("&Введите число: ", this);
     inLabel->setBuddy(input);
 
@@ -62,12 +54,24 @@ bool Bulls_and_Cows_Game::validate()
 {
     QString s = input->text();
     if(s.size()!=4)
-    {
-        QMessageBox::warning(this, "Ошибка", "Должно быть введено четырехзначное число!");
-        input->setFocus();
-        input->setText("");
-        return false;
-    }
+        s = "Должно быть введено четырехзначное число!";//QMessageBox::warning(this, "Ошибка", "Должно быть введено четырехзначное число!");
+    else if(!numberRuleCheck(s))
+        s = "Цифры в числе должны быть различны!";//QMessageBox::warning(this, "Ошибка", "Цифры в числе должны быть различны!");
+    else
+        return true;
+
+    QMessageBox::warning(this, "Ошибка", s);
+    input->setFocus();
+    input->setText("");
+    return false;
+}
+
+bool Bulls_and_Cows_Game::numberRuleCheck(QString n)
+{
+    for(int i = 0; i < n.size()-1; i++)
+        for(int j = i+1; j < n.size(); j++)
+            if(n[i] == n[j] || (n.size()==3 && (n[i]=='0' || n[j]=='0')))
+                return false;
     return true;
 }
 
@@ -78,15 +82,13 @@ void Bulls_and_Cows_Game::nwGame()
     status->setText("Игра началась");
     input->setText("");
     gameTable->setRowCount(0);
-    QRandomGenerator *rnd = QRandomGenerator::global();
-    number = QString::number(rnd->bounded(10000));
-    if(number.size() == 1)
-        number.push_front("000");
-    else if(number.size() == 2)
-        number.push_front("00");
-    else if(number.size() == 3)
+    do
+    {
+        number = QString::number(QRandomGenerator::global()->bounded(100, 10000));
+    }while(!numberRuleCheck(number));
+    if(number.size() == 3)
         number.push_front("0");
-    QMessageBox::information(this, "Циферка", number);
+    //QMessageBox::information(this, "Циферка", number);
 }
 
 void Bulls_and_Cows_Game::recShow()
@@ -100,29 +102,18 @@ void Bulls_and_Cows_Game::checkNum()
         return;
     int bulls = 0;
     int cows = 0;
-    QString s1 = number;
-    QString s2 = input->text();
-    for(int i = 3; i >= 0; i--)
-        if(s1[i] == s2[i])
-        {
-            s1.remove(i, 1);
-            s2.remove(i, 1);
-            bulls++;
-        }
-    for(int i = 0; i < s1.size(); i++)
-        for(int j = 0; j < s1.size(); j++)
-        {
-            if(s1[i] == s2[j])
+    QString s = input->text();
+    for(int i = 0; i < number.size(); i++)
+        for(int j = 0; j < number.size(); j++)
+            if(number[i] == s[j])
             {
-                s1.remove(i, 1);
-                s2.remove(j, 1);
-                cows++;
-                i--;
-                break;
+                if(i==j)
+                    bulls++;
+                else
+                    cows++;
             }
-        }
 
-    gameTable->setRowCount(gameTable->rowCount()+1);
+    gameTable->insertRow(gameTable->rowCount());
     gameTable->setItem(gameTable->rowCount()-1, 0, new QTableWidgetItem(input->text()));
     gameTable->setItem(gameTable->rowCount()-1, 1, new QTableWidgetItem(QString("Быков: %1; Коров: %2").arg(bulls).arg(cows)));
     input->setText("");
@@ -136,9 +127,9 @@ void Bulls_and_Cows_Game::checkNum()
 
 void Bulls_and_Cows_Game::winning()
 {
-    QMessageBox::information(this, "Победа!", "Вы победили!"
-                                              "\nИскомое число: " + number +
-                             "\nЧисло попыток: " + QString::number(gameTable->rowCount()));
+    QMessageBox::information(this, "Победа!",
+                             QString("Вы победили!\nИскомое число: %1"
+                             "\nЧисло попыток: %2").arg(number).arg(gameTable->rowCount()));
     input->setReadOnly(true);
     status->setText("Вы победили");
     chkButton->setDisabled(true);
@@ -153,8 +144,14 @@ void Bulls_and_Cows_Game::winning()
             emit personInfo(name, gameTable->rowCount());
         }
         else
-            QMessageBox::information(this, "Информация!","Ваш результат не будет занесен в таблицу рекордов");
+            QMessageBox::information(this, "Информация","Ваш результат не будет занесен в таблицу рекордов");
     }
+}
+
+void Bulls_and_Cows_Game::closeEvent(QCloseEvent *event)
+{
+    records->close();
+    event->accept();
 }
 
 void Bulls_and_Cows_Game::getInput()
@@ -162,4 +159,7 @@ void Bulls_and_Cows_Game::getInput()
     emit chkButton->clicked();
 }
 
-Bulls_and_Cows_Game::~Bulls_and_Cows_Game(){}
+Bulls_and_Cows_Game::~Bulls_and_Cows_Game()
+{
+    delete records;
+}

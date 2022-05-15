@@ -349,6 +349,9 @@ release\moc_bulls_and_cows_game.cpp: ..\LAB_Bulls_and_Cows\bulls_and_cows_game.h
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qboxlayout.h \
 		..\LAB_Bulls_and_Cows\recordlist.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QFile \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfile.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		release\moc_predefs.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\bin\moc.exe
 	D:\Qt\6.1.3\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/Qt projects/TASKS/build-LAB_Bulls_and_Cows-Desktop_Qt_6_1_3_MSVC2019_64bit-Debug/release/moc_predefs.h" -ID:/Qt/6.1.3/msvc2019_64/mkspecs/win32-msvc -I"D:/Qt projects/TASKS/LAB_Bulls_and_Cows" -ID:/Qt/6.1.3/msvc2019_64/include -ID:/Qt/6.1.3/msvc2019_64/include/QtWidgets -ID:/Qt/6.1.3/msvc2019_64/include/QtGui -ID:/Qt/6.1.3/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\LAB_Bulls_and_Cows\bulls_and_cows_game.h -o release\moc_bulls_and_cows_game.cpp
@@ -501,6 +504,9 @@ release\moc_recordlist.cpp: ..\LAB_Bulls_and_Cows\recordlist.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qtabbar.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QFile \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfile.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		release\moc_predefs.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\bin\moc.exe
 	D:\Qt\6.1.3\msvc2019_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/Qt projects/TASKS/build-LAB_Bulls_and_Cows-Desktop_Qt_6_1_3_MSVC2019_64bit-Debug/release/moc_predefs.h" -ID:/Qt/6.1.3/msvc2019_64/mkspecs/win32-msvc -I"D:/Qt projects/TASKS/LAB_Bulls_and_Cows" -ID:/Qt/6.1.3/msvc2019_64/include -ID:/Qt/6.1.3/msvc2019_64/include/QtWidgets -ID:/Qt/6.1.3/msvc2019_64/include/QtGui -ID:/Qt/6.1.3/msvc2019_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\LAB_Bulls_and_Cows\recordlist.h -o release\moc_recordlist.cpp
@@ -691,6 +697,9 @@ release\main.obj: ..\LAB_Bulls_and_Cows\main.cpp ..\LAB_Bulls_and_Cows\bulls_and
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qboxlayout.h \
 		..\LAB_Bulls_and_Cows\recordlist.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QFile \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfile.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\QApplication \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qapplication.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qcoreapplication.h \
@@ -866,6 +875,9 @@ release\bulls_and_cows_game.obj: ..\LAB_Bulls_and_Cows\bulls_and_cows_game.cpp .
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qboxlayout.h \
 		..\LAB_Bulls_and_Cows\recordlist.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QFile \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfile.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		ui_bulls_and_cows_game.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QVariant \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\QApplication \
@@ -1032,13 +1044,19 @@ release\recordlist.obj: ..\LAB_Bulls_and_Cows\recordlist.cpp ..\LAB_Bulls_and_Co
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qtabbar.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qtabwidget.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qrubberband.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\QFile \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfile.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtCore\qfiledevice.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\QHeaderView \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qheaderview.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\QLayout \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qlayout.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qlayoutitem.h \
 		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qboxlayout.h \
-		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qgridlayout.h
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\QMessageBox \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qmessagebox.h \
+		..\..\..\Qt\6.1.3\msvc2019_64\include\QtWidgets\qdialog.h
 
 release\moc_bulls_and_cows_game.obj: release\moc_bulls_and_cows_game.cpp 
 

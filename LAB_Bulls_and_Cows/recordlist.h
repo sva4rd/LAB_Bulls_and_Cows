@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTableWidget>
+#include <QFile>
 
 class RecordList : public QWidget
 {
@@ -10,7 +11,9 @@ class RecordList : public QWidget
     friend class Bulls_and_Cows_Game;
 private:
     explicit RecordList(/*QWidget *parent = nullptr*/);
+    ~RecordList();
     QTableWidget *recordsTable;
+    void tableSettings(QTableWidget *table);
 private slots:
     void nwRezult(QString name, int attemps);
 };
