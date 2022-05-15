@@ -2,10 +2,13 @@
 #include <QHeaderView>
 #include <QLayout>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 RecordList::RecordList(/*QWidget *parent*/)
-    //: QWidget{parent}
+//: QWidget{parent}
 {
+    isChange = false;
+
     recordsTable = new QTableWidget(0, 2, this);
     tableSettings(recordsTable);
 
@@ -25,7 +28,7 @@ RecordList::RecordList(/*QWidget *parent*/)
             QTableWidgetItem *value = new QTableWidgetItem();
             value->setData(Qt::DisplayRole, in.readLine().toInt());//
 
-            recordsTable->setRowCount(recordsTable->rowCount()+1);
+            recordsTable->insertRow(recordsTable->rowCount());
             recordsTable->setItem(recordsTable->rowCount()-1, 0, value);
             recordsTable->setItem(recordsTable->rowCount()-1, 1, new QTableWidgetItem(in.readLine()));//
         }
@@ -45,15 +48,8 @@ void RecordList::nwRezult(QString name, int attemps)
 
     if(recordsTable->rowCount() == 11)
         recordsTable->removeRow(10);
-    QFile file("data.dat");
-    if(file.open(QIODevice::WriteOnly))
-    {
-        QTextStream out(&file);
-        for(int i=0;i<recordsTable->rowCount();i++)
-            for(int j=0;j<recordsTable->columnCount();j++)
-                out << recordsTable->item(i,j)->text() << '\n';
-    }
-    file.close();
+    if(!isChange)
+        isChange = true;
 }
 
 void RecordList::tableSettings(QTableWidget *table)
@@ -64,6 +60,19 @@ void RecordList::tableSettings(QTableWidget *table)
 
     QHeaderView* header = table->horizontalHeader();
     header->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void RecordList::writeInFile()
+{
+    QFile file("data.dat");
+    if(isChange && file.open(QIODevice::WriteOnly))
+    {
+        QTextStream out(&file);
+        for(int i=0;i<recordsTable->rowCount();i++)
+            for(int j=0;j<recordsTable->columnCount();j++)
+                out << recordsTable->item(i,j)->text() << '\n';
+    }
+    file.close();
 }
 
 RecordList::~RecordList(){}

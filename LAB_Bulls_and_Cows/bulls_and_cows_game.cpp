@@ -150,6 +150,7 @@ void Bulls_and_Cows_Game::winning()
 
 void Bulls_and_Cows_Game::closeEvent(QCloseEvent *event)
 {
+    records->writeInFile();
     records->close();
     event->accept();
 }

@@ -13,7 +13,9 @@ private:
     explicit RecordList(/*QWidget *parent = nullptr*/);
     ~RecordList();
     QTableWidget *recordsTable;
+    bool isChange;
     void tableSettings(QTableWidget *table);
+    void writeInFile();
 private slots:
     void nwRezult(QString name, int attemps);
 };
